@@ -41,6 +41,7 @@ class Enemy(pygame.sprite.Sprite): ##Q what does sprite class mean?
         #tests for collision and removes any collided sprites
         if pygame.sprite.groupcollide(GAME.BULLET_GROUP, GAME.ENEMY_GROUP, True, True):
             print("Enemy hit")
+            GAME.SCORE += 1
         return
 
 

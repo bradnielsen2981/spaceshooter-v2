@@ -50,8 +50,7 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         if pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False):
             print("Player hit")
             GAME.STATE = "Game Over"
-            GAME.EXIT = True
-
+            GAME.ENDTIME = time.time()
         return
     
     # Called by sprites update function - not necessary unless sprite has keyboard input 

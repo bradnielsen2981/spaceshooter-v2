@@ -8,6 +8,9 @@ PLAYER = None
 EXIT = False
 STATE = "Running"
 MUSIC = None
+SCORE = 0
+STARTTIME = 0
+ENDTIME = 0
 
 # Assuming sprite and rectangle are pygame.Rect objects
 def is_sprite_outside_rectangle(sprite, rectangle, wrap=False, align=False):
