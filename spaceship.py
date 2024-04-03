@@ -62,10 +62,19 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
             self.direction = (self.direction + direction)/2 #add the direction to the current direction
             if self.speed < self.speedlimit: #limit speed
                 self.speed += 0.2
-        if pressed[pygame.K_s] == 1:
+        elif pressed[pygame.K_s] == 1:
             self.direction = (self.direction + direction)/2
             if self.speed > -self.speedlimit: #limit speed
                 self.speed -= 0.2
+        if pressed[pygame.K_a] == 1:
+            self.direction = (self.direction + direction.rotate(-90))/2
+            if self.speed < self.speedlimit: #limit speed
+                self.speed += 0.2
+        elif pressed[pygame.K_d] == 1:
+            self.direction = (self.direction + direction.rotate(90))/2
+            if self.speed < self.speedlimit: #limit speed
+                self.speed += 0.2
+
         return
 
     # Rotate towards the direction  

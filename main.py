@@ -40,7 +40,7 @@ while not GAME.EXIT:
 
     # GAME LOGIC ------------------------------------
 
-    # Process events #
+    # Process events
     for event in pygame.event.get():
         if event.type == QUIT:
             GAME.EXIT = True
