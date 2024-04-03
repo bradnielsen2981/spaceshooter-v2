@@ -2,7 +2,8 @@ import pygame
 
 # Global game objects and variables
 SCREEN = None
-ALL_SPRITE_GROUP = None
+BULLET_GROUP = None
+ENEMY_GROUP = None
 PLAYER = None
 EXIT = False
 STATE = "Running"

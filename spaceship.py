@@ -28,9 +28,11 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         self.rect.center = self.position.xy
         
         self.last_shoot_time = 0 #used to stop machine gun effect
-
-        #add to global sprite group 
-        GAME.ALL_SPRITE_GROUP.add(self)
+        return
+    
+    # draw the sprite
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
         return
     
     # Updates the sprite every frame
@@ -44,10 +46,17 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         
         screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
         GAME.is_sprite_outside_rectangle(self, screen_rect, wrap=True)
+
+        if pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False):
+            print("Player hit")
+            GAME.STATE = "Game Over"
+            GAME.EXIT = True
+
         return
     
     # Called by sprites update function - not necessary unless sprite has keyboard input 
-    def apply_impulse(self, pressed, mouse_pos):    
+    def apply_impulse(self, pressed, mouse_pos):   
+
         direction = pygame.Vector2(mouse_pos - self.position).normalize() 
         if pressed[pygame.K_w] == 1:
             self.direction = (self.direction + direction)/2 #add the direction to the current direction

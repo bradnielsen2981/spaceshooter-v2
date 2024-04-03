@@ -4,11 +4,11 @@ from pygame.locals import *
 import os, sys, random
 import game_globals as GAME
 from spaceship import Spaceship
+from enemy import Enemy
 from laser import Laser
 
-'''-----------------------Initialisation--------------------------'''
+'''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
-sys.tracebacklimit = 1
 pygame.init()
 pygame.mixer.init()
 pygame.font.init()
@@ -21,44 +21,55 @@ FONT = pygame.font.SysFont('Comic Sans MS', 30)
 BACKGROUND_IMAGE = pygame.image.load("images/background.jpg")
 
 GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displayed #
-GAME.ALL_SPRITE_GROUP = pygame.sprite.Group()
 GAME.PLAYER = Spaceship(500, 300)
 GAME.EXIT = False
 GAME.STATE = "Running"
 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
 GAME.MUSIC.play(-1)
+GAME.BULLET_GROUP = pygame.sprite.Group()
+GAME.ENEMY_GROUP = pygame.sprite.Group()
+
+create_enemy_event = pygame.USEREVENT + 1 #create a number of the event
+pygame.time.set_timer(create_enemy_event, 5) 
 
 '''-------------------------- Game Loop --------------------------'''
-# Loop game until EXIT = True
 while not GAME.EXIT:
 
     # Control the rate at which game run --> framerate set to 60fps #
     CLOCK.tick(60)
 
+    # GAME LOGIC ------------------------------------
+
     # Process events #
     for event in pygame.event.get():
         if event.type == QUIT:
             GAME.EXIT = True
-        elif event.type == USEREVENT + 1:
-            #clear the time
-            pygame.time.set_timer(USEREVENT + 1, 0)
+        elif event.type == create_enemy_event:
+            enemy = Enemy(10,10)
+            pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
-    # Process user input
+    # Collect user input
     pressed = pygame.key.get_pressed() #returns []
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
     mouse_buttons = pygame.mouse.get_pressed() # return (1, 0, 0) if left button click
-    # do something with the input
+    # Update Sprites
+    if GAME.PLAYER:
+        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
+    GAME.BULLET_GROUP.update()
+    GAME.ENEMY_GROUP.update()
 
-    GAME.ALL_SPRITE_GROUP.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
-    #DRAWING CODE---------------------------------
+    # GAME DRAWING ---------------------------------
+
     #GAME.SCREEN.fill((0, 0, 0))
     GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
-
-    GAME.ALL_SPRITE_GROUP.draw(GAME.SCREEN) # draw all sprites by calling their draw function
-    
+    GAME.BULLET_GROUP.draw(GAME.SCREEN)
+    GAME.ENEMY_GROUP.draw(GAME.SCREEN)
+    if GAME.PLAYER:
+        GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
     LABEL = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
     GAME.SCREEN.blit(LABEL, (50,50))
-    pygame.display.flip()
+
+    pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
 '''------------------------ Exit --------------------------------'''
 print("Exiting")

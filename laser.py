@@ -23,16 +23,15 @@ class Laser(pygame.sprite.Sprite):
         self.sound = pygame.mixer.Sound("sounds/laser.mp3")
         self.sound.play(0)
 
-        GAME.ALL_SPRITE_GROUP.add(self) #makes it draw and update
+        GAME.BULLET_GROUP.add(self) #makes it draw and update
         return
 
-    def update(self, pressed, mouse_pos, mouse_buttons):
+    def update(self):
         self.position = self.position + self.speed*self.direction
         self.rect.center = self.position.xy #need to move the rectangle to draw
         
         if not self.rect.colliderect(GAME.SCREEN.get_rect()):
             self.kill()
-            print("Kill laser")
         return
     
 
