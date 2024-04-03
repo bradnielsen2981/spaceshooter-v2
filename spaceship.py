@@ -13,7 +13,6 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         
         # Sprite Image
         self.image = pygame.image.load("images/spaceship.png")
-        self.image.convert_alpha()
         self.image = pygame.transform.scale(self.image, (75, 75))
         self.originalimage = self.image.copy() #need original image to rotate
 
