@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 import os, sys, random, time, math
 import game_globals as GAME
-#from spaceship import Spaceship
+from spaceship import Spaceship
 #from enemy import Enemy
 #from laser import Laser
 
@@ -44,7 +44,6 @@ while not GAME.EXIT:
         #    enemy = Enemy(10,10)
         #    pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
-
     # Collect user input
     pressed = pygame.key.get_pressed() #returns []
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
@@ -65,23 +64,23 @@ while not GAME.EXIT:
             if button_rect.collidepoint(mouse_pos):
                 GAME.STATE = "Running"
                 GAME.STARTTIME = time.time()
-    #            GAME.PLAYER = Spaceship(500,300)
+                GAME.PLAYER = Spaceship(500,300)
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
     #            pygame.time.set_timer(create_enemy_event, 1000)
 
     elif GAME.STATE == "Running":
         # Update Sprites
-    #    if GAME.PLAYER:
-    #        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
+        if GAME.PLAYER:
+            GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
     #    GAME.BULLET_GROUP.update()
     #    GAME.ENEMY_GROUP.update()
 
         # GAME DRAWING ---------------------------------
     #    GAME.BULLET_GROUP.draw(GAME.SCREEN)
     #    GAME.ENEMY_GROUP.draw(GAME.SCREEN)
-    #    if GAME.PLAYER:
-    #        GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
+        if GAME.PLAYER:
+            GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
         timer = int(time.time() - GAME.STARTTIME)
         timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
         GAME.SCREEN.blit(timer_text,(10,10))
