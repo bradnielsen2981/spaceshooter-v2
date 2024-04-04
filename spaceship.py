@@ -47,6 +47,12 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
             self.position = self.position + self.speed*self.direction
             self.rect.center = self.position.xy #need to move the rectangle to draw
 
+        #if pressed[pygame.K_SPACE] == 1:
+        #    if (time.time() - self.last_shoot_time) > 0.2:
+        #        direction = pygame.Vector2(0,-1)
+        #        l = Laser(self.position + (direction*40), direction, 10)
+        #        self.last_shoot_time = time.time()
+
         screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
         if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
             self.speed = 0
