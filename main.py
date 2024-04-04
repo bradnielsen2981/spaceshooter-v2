@@ -53,24 +53,24 @@ while not GAME.EXIT:
     GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
     #GAME.SCREEN.fill((0, 0, 0))
 
-    #if GAME.STATE == "Start Game":
-    #    coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
-    #    GAME.SCREEN.blit(coord, (10,10))
-    #    button_rect = pygame.rect.Rect(460,330,200,100)
-    #    pygame.draw.rect(GAME.SCREEN,(200,0,0),button_rect) 
-    #    button_text = FONT.render("Play",True,(200,200,200))
-    #    GAME.SCREEN.blit(button_text,(520,360))
-    #    
-    #    if mouse_buttons[0] == 1:
-    #        if button_rect.collidepoint(mouse_pos):
-    #            GAME.STATE = "Running"
-    #            GAME.STARTTIME = time.time()
+    if GAME.STATE == "Start Game":
+        coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
+        GAME.SCREEN.blit(coord, (10,10))
+        button_rect = pygame.rect.Rect(460,330,200,100)
+        pygame.draw.rect(GAME.SCREEN,(200,0,0),button_rect) 
+        button_text = FONT.render("Play",True,(200,200,200))
+        GAME.SCREEN.blit(button_text,(520,360))
+        
+        if mouse_buttons[0] == 1:
+            if button_rect.collidepoint(mouse_pos):
+                GAME.STATE = "Running"
+                GAME.STARTTIME = time.time()
     #            GAME.PLAYER = Spaceship(500,300)
-    #            GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
-    #            GAME.MUSIC.play(-1)
+                GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
+                GAME.MUSIC.play(-1)
     #            pygame.time.set_timer(create_enemy_event, 1000)
 
-    #elif GAME.STATE == "Running":
+    elif GAME.STATE == "Running":
         # Update Sprites
     #    if GAME.PLAYER:
     #        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
@@ -82,6 +82,9 @@ while not GAME.EXIT:
     #    GAME.ENEMY_GROUP.draw(GAME.SCREEN)
     #    if GAME.PLAYER:
     #        GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
+        timer = int(time.time() - GAME.STARTTIME)
+        timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
+        GAME.SCREEN.blit(timer_text,(10,10))
         
     #    score_text = FONT.render("Score: " + str(GAME.SCORE),True,(200,200,200))
     #    GAME.SCREEN.blit(score_text,(10,10))
