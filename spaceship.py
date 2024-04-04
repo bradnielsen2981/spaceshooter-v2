@@ -17,8 +17,8 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         self.originalimage = self.image.copy() #need original image to rotate
 
         # Sprite Movement
-        #self.direction = pygame.Vector2(0,0)
-        self.speed = 0
+        self.direction = pygame.Vector2(0,0)
+        self.speed = 4
         #self.speedlimit = 3
 
         # Sprite Positioning
@@ -37,19 +37,22 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
     # Updates the sprite every frame
     def update(self, pressed, mouse_pos, mouse_buttons):
 
-        #self.apply_impulse(pressed, mouse_pos)
-        #self.process_mouse_input(mouse_pos, mouse_buttons)
+        if pressed[pygame.K_a] == 1:
+            self.direction = pygame.Vector2(-1,0)
+            self.position = self.position + self.speed*self.direction
+            self.rect.center = self.position.xy #need to move the rectangle to draw
 
-        self.position = self.position + self.speed*self.direction
-        self.rect.center = self.position.xy #need to move the rectangle to draw
-        
-        #screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
-        #GAME.is_sprite_outside_rectangle(self, screen_rect, wrap=True)
+        elif pressed[pygame.K_d] == 1:
+            self.direction = pygame.Vector2(1,0)
+            self.position = self.position + self.speed*self.direction
+            self.rect.center = self.position.xy #need to move the rectangle to draw
 
-        #if pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False):
-        #    print("Player hit")
-        #    GAME.STATE = "Game Over"
-        #    GAME.ENDTIME = time.time()
+        screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
+        if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
+            self.speed = 0
+        else: 
+            self.speed = 4
+
         return
     
     # Called by sprites update function - not necessary unless sprite has keyboard input 

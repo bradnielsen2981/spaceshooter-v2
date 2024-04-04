@@ -64,7 +64,7 @@ while not GAME.EXIT:
             if button_rect.collidepoint(mouse_pos):
                 GAME.STATE = "Running"
                 GAME.STARTTIME = time.time()
-                GAME.PLAYER = Spaceship(500,300)
+                GAME.PLAYER = Spaceship(500,700)
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
     #            pygame.time.set_timer(create_enemy_event, 1000)
