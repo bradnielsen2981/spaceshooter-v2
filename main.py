@@ -5,7 +5,6 @@ import os, sys, random, time, math
 import game_globals as GAME
 from spaceship import Spaceship
 #from enemy import Enemy
-#from laser import Laser
 
 '''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
@@ -23,7 +22,7 @@ BACKGROUND_IMAGE = pygame.image.load("images/background.jpg")
 GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displayed #
 GAME.EXIT = False
 GAME.STATE = "Start Game"
-#GAME.BULLET_GROUP = pygame.sprite.Group()
+GAME.BULLET_GROUP = pygame.sprite.Group()
 #GAME.ENEMY_GROUP = pygame.sprite.Group()
 
 #create_enemy_event = pygame.USEREVENT + 1 #create a number of the event
@@ -73,11 +72,11 @@ while not GAME.EXIT:
         # Update Sprites
         if GAME.PLAYER:
             GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
-    #    GAME.BULLET_GROUP.update()
+        GAME.BULLET_GROUP.update()
     #    GAME.ENEMY_GROUP.update()
 
         # GAME DRAWING ---------------------------------
-    #    GAME.BULLET_GROUP.draw(GAME.SCREEN)
+        GAME.BULLET_GROUP.draw(GAME.SCREEN)
     #    GAME.ENEMY_GROUP.draw(GAME.SCREEN)
         if GAME.PLAYER:
             GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
