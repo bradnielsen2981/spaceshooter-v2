@@ -45,10 +45,6 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
 #        GAME.is_sprite_outside_rectangle(self, screen_rect, wrap=True)
 
-#        if pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False):
-#            print("Player hit")
-#            GAME.STATE = "Game Over"
-#            GAME.ENDTIME = time.time()
 #        return
     
     # Called by sprites update function - not necessary unless sprite has keyboard input 
