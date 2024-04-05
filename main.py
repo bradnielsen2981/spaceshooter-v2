@@ -4,7 +4,6 @@ from pygame.locals import *
 import os, sys, random, time, math
 import game_globals as GAME
 from spaceship import Spaceship
-#from enemy import Enemy
 #from laser import Laser
 
 '''----------------------- Initialisation --------------------------'''
