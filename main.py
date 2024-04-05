@@ -87,17 +87,6 @@ while not GAME.EXIT:
     #    score_text = FONT.render("Score: " + str(GAME.SCORE),True,(200,200,200))
     #    GAME.SCREEN.blit(score_text,(10,10))
 
-    #elif GAME.STATE == "Game Over":
-    #    LABEL = FONT.render("GAME OVER",True,(200,200,200))
-    #    GAME.SCREEN.blit(LABEL, (400,360))
-    #    pygame.time.set_timer(create_enemy_event, 0)
-    #    GAME.PLAYER = None
-    #    GAME.BULLET_GROUP.empty()
-    #    GAME.ENEMY_GROUP.empty()
-
-    #    if time.time() - GAME.ENDTIME > 3:
-    #        GAME.STATE = "Start Game"
-
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
 '''------------------------ Exit --------------------------------'''
