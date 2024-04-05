@@ -42,8 +42,9 @@ while not GAME.EXIT:
             GAME.EXIT = True
         elif event.type == create_enemy_event:
             #choose a random corner
-            position = random.choice([(0,0),(1024,0),(0,768),(1024,768)])
-            enemy = Enemy(position[0],position[1])
+            #position = random.choice([(0,0),(1024,0),(0,768),(1024,768)])
+            #enemy = Enemy(position[0],position[1])
+            enemy = Enemy(10,10)
             pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
 
@@ -93,22 +94,22 @@ while not GAME.EXIT:
         GAME.SCREEN.blit(score_text,(10,80))
 
         #draw player health
-        health_rect = pygame.rect.Rect(200,10,400,50)
-        pygame.draw.rect(GAME.SCREEN,(200,0,0),health_rect)
-        playerhealth = int(400*GAME.PLAYER.health/100)
-        health_remaining_rect = pygame.rect.Rect(200+(400-playerhealth),10,playerhealth,50)
-        pygame.draw.rect(GAME.SCREEN,(0,200,0),health_remaining_rect)         
+        #health_rect = pygame.rect.Rect(200,10,400,50)
+        #pygame.draw.rect(GAME.SCREEN,(200,0,0),health_rect)
+        #playerhealth = int(400*GAME.PLAYER.health/100)
+        #health_remaining_rect = pygame.rect.Rect(200+(400-playerhealth),10,playerhealth,50)
+        #pygame.draw.rect(GAME.SCREEN,(0,200,0),health_remaining_rect)         
 
-    elif GAME.STATE == "Game Over":
-        LABEL = FONT.render("GAME OVER",True,(200,200,200))
-        GAME.SCREEN.blit(LABEL, (400,360))
-        pygame.time.set_timer(create_enemy_event, 0)
-        GAME.PLAYER = None #Now kill the player
-        GAME.BULLET_GROUP.empty()
-        GAME.ENEMY_GROUP.empty()
+    #elif GAME.STATE == "Game Over":
+    #    LABEL = FONT.render("GAME OVER",True,(200,200,200))
+    #    GAME.SCREEN.blit(LABEL, (400,360))
+    #    pygame.time.set_timer(create_enemy_event, 0)
+    #    GAME.PLAYER = None #Now kill the player
+    #    GAME.BULLET_GROUP.empty()
+    #    GAME.ENEMY_GROUP.empty()
 
-        if time.time() - GAME.ENDTIME > 3:
-            GAME.STATE = "Start Game"
+    #    if time.time() - GAME.ENDTIME > 3:
+    #        GAME.STATE = "Start Game"
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     

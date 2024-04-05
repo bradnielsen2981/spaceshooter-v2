@@ -22,7 +22,7 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         self.speedlimit = 3
 
         # health
-        self.health = 100
+        #self.health = 100
 
         # Sprite Positioning
         self.rect = self.image.get_rect() # gets rectangle of the image #
@@ -55,14 +55,14 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
         #    print("Player hit")
         #return
     
-        collidedsprites = pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False) #dont use dokill because all enemies are looking for the the player
-        for sprite in collidedsprites:
-            self.health -= 10
-            sprite.kill()
-        if self.health <= 0:
-            GAME.STATE = "Game Over"
-            GAME.ENDTIME = time.time()
-        return
+        #collidedsprites = pygame.sprite.spritecollide(self, GAME.ENEMY_GROUP, False) #dont use dokill because all enemies are looking for the the player
+        #for sprite in collidedsprites:
+        #    self.health -= 10
+        #    sprite.kill()
+        #if self.health <= 0:
+        #    GAME.STATE = "Game Over"
+        #    GAME.ENDTIME = time.time()
+        #return
 
     # Called by sprites update function - not necessary unless sprite has keyboard input 
     def apply_impulse(self, pressed, mouse_pos):   

@@ -35,14 +35,15 @@ class Enemy(pygame.sprite.Sprite): ##Q what does sprite class mean?
     # Updates the sprite every frame
     def update(self):
 
+        self.direction = pygame.Vector2(GAME.PLAYER.position - self.position).normalize()
         #set timed change of direction
-        if time.time() - self.direction_timer > 2:
-            self.direction_timer = time.time()
-            self.direction = pygame.Vector2(GAME.PLAYER.position - self.position).normalize() 
+        #if time.time() - self.direction_timer > 2:
+        #    self.direction_timer = time.time()
+        #    self.direction = pygame.Vector2(GAME.PLAYER.position - self.position).normalize() 
 
-        if time.time() - self.speed_timer > 5:
-            self.speed_timer = time.time()
-            self.speed += 1
+        #if time.time() - self.speed_timer > 5:
+        #    self.speed_timer = time.time()
+        #    self.speed += 1
 
         self.position = self.position + self.speed*self.direction
         self.rect.center = self.position.xy #need to move the rectangle to draw
