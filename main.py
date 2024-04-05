@@ -25,8 +25,6 @@ GAME.EXIT = False
 GAME.STATE = "Start Game"
 #GAME.BULLET_GROUP = pygame.sprite.Group()
 
-#create_enemy_event = pygame.USEREVENT + 1 #create a number of the event
-
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
 
