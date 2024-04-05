@@ -41,7 +41,9 @@ while not GAME.EXIT:
         if event.type == QUIT:
             GAME.EXIT = True
         elif event.type == create_enemy_event:
-            enemy = Enemy(10,10)
+            #choose a random corner
+            position = random.choice([(0,0),(1024,0),(0,768),(1024,768)])
+            enemy = Enemy(position[0],position[1])
             pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
 
