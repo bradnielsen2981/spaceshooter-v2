@@ -43,7 +43,8 @@ class Enemy(pygame.sprite.Sprite):
         screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
         if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
             self.direction = -self.direction
-            #self.position = self.position + pygame.Vector2(0,80)
+            self.position = self.position + pygame.Vector2(0,80)
+            self.speed += 1
 
         #tests for collision and removes any collided sprites
         if pygame.sprite.groupcollide(GAME.BULLET_GROUP, GAME.ENEMY_GROUP, True, True):
