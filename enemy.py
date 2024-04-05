@@ -1,4 +1,3 @@
-''' Spaceship Sprite Code '''
 import pygame
 import game_globals as GAME
 import math, time
@@ -36,7 +35,9 @@ class Enemy(pygame.sprite.Sprite): ##Q what does sprite class mean?
         
         screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
         if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
-            self.direction = pygame.Vector2(-1,0)
+            self.direction = -self.direction
+            self.position = self.position + pygame.Vector2(0,80)
+
         #tests for collision and removes any collided sprites
         if pygame.sprite.groupcollide(GAME.BULLET_GROUP, GAME.ENEMY_GROUP, True, True):
             print("Enemy hit")
