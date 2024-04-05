@@ -40,7 +40,7 @@ while not GAME.EXIT:
         if event.type == QUIT:
             GAME.EXIT = True
         elif event.type == create_enemy_event:
-            enemy = Enemy(50,50)
+            enemy = Enemy(10,10)
             pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
     # Collect user input
