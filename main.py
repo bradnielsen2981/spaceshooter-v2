@@ -83,8 +83,12 @@ while not GAME.EXIT:
         if GAME.PLAYER:
             GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
         
+        timer = int(time.time() - GAME.STARTTIME)
+        timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
+        GAME.SCREEN.blit(timer_text,(10,10))
+        
         score_text = FONT.render("Score: " + str(GAME.SCORE),True,(200,200,200))
-        GAME.SCREEN.blit(score_text,(10,10))
+        GAME.SCREEN.blit(score_text,(10,80))
 
         #draw player health
         health_rect = pygame.rect.Rect(200,10,400,50)
