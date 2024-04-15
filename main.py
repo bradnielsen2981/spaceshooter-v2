@@ -37,32 +37,10 @@ while not GAME.EXIT:
     # Collect user input
     pressed = pygame.key.get_pressed() #returns []
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
-    mouse_buttons = pygame.mouse.get_pressed() # return (1, 0, 0) if left button click
+    mouse_buttons = pygame.mouse.get_pressed() # return (0, 0, 0) if left button click
 
     #GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
     GAME.SCREEN.fill((0, 0, 255))
-
-    #if GAME.STATE == "Start Game":
-    #    coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
-    #    GAME.SCREEN.blit(coord, (10,10))
-    #    button_rect = pygame.rect.Rect(460,330,200,100)
-    #    pygame.draw.rect(GAME.SCREEN,(200,0,0),button_rect) 
-    #    button_text = FONT.render("Play",True,(200,200,200))
-    #    GAME.SCREEN.blit(button_text,(520,360))
-    #    
-    #    if mouse_buttons[0] == 1:
-    #        if button_rect.collidepoint(mouse_pos):
-    #            GAME.STATE = "Running"
-    #            GAME.STARTTIME = time.time()
-    #            GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
-    #            GAME.MUSIC.play(-1)
-    #            pygame.time.set_timer(create_enemy_event, 1000)
-
-    #elif GAME.STATE == "Running":
-
-    #    timer = int(time.time() - GAME.STARTTIME)
-    #    timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
-    #    GAME.SCREEN.blit(timer_text,(10,10))
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
