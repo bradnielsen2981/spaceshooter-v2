@@ -5,7 +5,7 @@
 #import math, time
 
 #Sprite Object for the Space Ship
-#class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
+#class Spaceship(pygame.sprite.Sprite):
 #
     # Constructing spaceship object #
 #    def __init__(self, x, y):
