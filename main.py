@@ -1,6 +1,6 @@
 ''' Main Game Code '''
 import pygame
-from pygame.locals import *
+import pygame.locals as CONSTANTS
 import os, sys, random, time, math
 import game_globals as GAME
 
@@ -31,7 +31,7 @@ while not GAME.EXIT:
 
     # Process events
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
 
     # Collect user input
@@ -39,8 +39,8 @@ while not GAME.EXIT:
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
     mouse_buttons = pygame.mouse.get_pressed() # return (1, 0, 0) if left button click
 
-    GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
-    #GAME.SCREEN.fill((0, 0, 0))
+    #GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
+    GAME.SCREEN.fill((0, 0, 255))
 
     #if GAME.STATE == "Start Game":
     #    coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
