@@ -1,6 +1,6 @@
 ''' Main Game Code '''
 import pygame
-from pygame.locals import *
+import pygame.locals as CONSTANTS
 import os, sys, random, time, math
 import game_globals as GAME
 #from spaceship import Spaceship
@@ -32,7 +32,7 @@ while not GAME.EXIT:
 
     # Process events
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
 
     # Collect user input
@@ -60,7 +60,7 @@ while not GAME.EXIT:
                 GAME.MUSIC.play(-1)
 
     elif GAME.STATE == "Running":
-        # Update Sprites
+    # Update Sprites
     #    if GAME.PLAYER:
     #        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
 
