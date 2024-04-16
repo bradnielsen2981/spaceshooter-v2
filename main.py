@@ -28,7 +28,6 @@ while not GAME.EXIT:
     CLOCK.tick(60)
 
     # GAME LOGIC ------------------------------------
-
     # Process events
     for event in pygame.event.get():
         if event.type == CONSTANTS.QUIT:
@@ -41,6 +40,12 @@ while not GAME.EXIT:
 
     #GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
     GAME.SCREEN.fill((0, 0, 255))
+
+    #if GAME.STATE == "Start Game":
+        #text = FONT.render("Welcome to Pygame",True,(200,200,200))
+        #GAME.SCREEN.blit(text, (10,10))
+        #coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
+        #GAME.SCREEN.blit(coord, (10,10))
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
