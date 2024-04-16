@@ -3,7 +3,7 @@ import pygame
 import pygame.locals as CONSTANTS
 import os, sys, random, time, math
 import game_globals as GAME
-#from spaceship import Spaceship
+from spaceship import Spaceship
 
 '''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
@@ -29,7 +29,6 @@ while not GAME.EXIT:
     CLOCK.tick(60)
 
     # GAME LOGIC ------------------------------------
-
     # Process events
     for event in pygame.event.get():
         if event.type == CONSTANTS.QUIT:
@@ -53,20 +52,14 @@ while not GAME.EXIT:
         
         if mouse_buttons[0] == 1:
             if button_rect.collidepoint(mouse_pos):
-                GAME.STATE = "Running"
                 GAME.STARTTIME = time.time()
-    #            GAME.PLAYER = Spaceship(500,300)
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
+                #GAME.PLAYER = Spaceship(500,300)
+                GAME.STATE = "Running"
 
     elif GAME.STATE == "Running":
-    # Update Sprites
-    #    if GAME.PLAYER:
-    #        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
-
-    # GAME DRAWING ---------------------------------
-    #    if GAME.PLAYER:
-    #        GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
+            
         timer = int(time.time() - GAME.STARTTIME)
         timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
         GAME.SCREEN.blit(timer_text,(10,10))

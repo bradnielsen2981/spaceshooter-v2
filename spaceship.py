@@ -1,58 +1,21 @@
 ''' Spaceship Sprite Code '''
-#import pygame
-#from laser import Laser
-#import game_globals as GAME
-#import math, time
+import pygame
+import game_globals as GAME
+import math, time
 
 #Sprite Object for the Space Ship
-#class Spaceship(pygame.sprite.Sprite):
+class Spaceship(pygame.sprite.Sprite):
 #
     # Constructing spaceship object #
-#    def __init__(self, x, y):
-#        super().__init__() 
-        
-        # Sprite Image
-#        self.image = pygame.image.load("images/spaceship.png")
-#        self.image = pygame.transform.scale(self.image, (75, 75))
-#        self.originalimage = self.image.copy() #need original image to rotate
-
-        # Sprite Movement
-#        self.direction = pygame.Vector2(0,0)
-#        self.speed = 0
-#        self.speedlimit = 3
-
-        # Sprite Positioning
-#        self.rect = self.image.get_rect() # gets rectangle of the image #
-#        self.position = pygame.Vector2(x,y)
-#        self.rect.center = self.position.xy
-        
-#        self.last_shoot_time = 0 #used to stop machine gun effect
-#        return
+    def __init__(self, x, y):
+        super().__init__() 
+        return
     
     # draw the sprite
-#    def draw(self, screen):
-#        screen.blit(self.image, self.rect)
-#        return
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+        return
     
     # Updates the sprite every frame
-#    def update(self, pressed, mouse_pos, mouse_buttons):
-
-#        if pressed[pygame.K_a] == 1:
-#            self.direction = pygame.Vector2(-1,0)
-#            self.position = self.position + self.speed*self.direction
-#            self.rect.center = self.position.xy #need to move the rectangle to draw
-
-#        elif pressed[pygame.K_d] == 1:
-#            self.direction = pygame.Vector2(1,0)
-#            self.position = self.position + self.speed*self.direction
-#            self.rect.center = self.position.xy #need to move the rectangle to draw
-
-#        screen_rect = pygame.Rect((0, 0), GAME.SCREEN.get_size())
-#        if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
-#            self.speed = 0
-#        else: 
-#            self.speed = 4
-
-#        return
-
-
+    def update(self, pressed, mouse_pos, mouse_buttons):
+        return
