@@ -13,6 +13,7 @@ STARTTIME = 0
 ENDTIME = 0
 
 # Assuming sprite and rectangle are pygame.Rect objects
+# if wrap is True, wrap to the otherside of the rectangle. If align is True align the sprite to the rectangle edge
 def is_sprite_outside_rectangle(sprite, rectangle, wrap=False, align=False):
     if sprite.rect.top < rectangle.top:
         if align:
