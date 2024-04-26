@@ -10,7 +10,7 @@ pygame.init()
 pygame.mixer.init()
 pygame.font.init()
 pygame.display.set_mode((1024, 768))
-pygame.display.set_caption('Space Game') # Setting bar title of game window #
+pygame.display.set_caption('Asteroids') # Setting bar title of game window #
 
 # Global game objects and variables
 CLOCK = pygame.time.Clock() # Creating a 'clock' variable that tracks time #
@@ -24,28 +24,27 @@ GAME.STATE = "Start Game"
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
 
-    # Control the rate at which game run --> framerate set to 60fps #
-    CLOCK.tick(60)
+    CLOCK.tick(60) #60 frames per seconds
 
-    # GAME LOGIC ------------------------------------
-    # Process events
     for event in pygame.event.get():
         if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
 
-    # Collect user input
     pressed = pygame.key.get_pressed() #returns []
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
     mouse_buttons = pygame.mouse.get_pressed() # return (0, 0, 0) if left button click
 
-    #GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
-    GAME.SCREEN.fill((0, 0, 255))
+    GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
 
-    #if GAME.STATE == "Start Game":
-        #text = FONT.render("Welcome to Pygame",True,(200,200,200))
-        #GAME.SCREEN.blit(text, (10,10))
-        #coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
-        #GAME.SCREEN.blit(coord, (10,10))
+    if GAME.STATE == "Start Game":
+        text = FONT.render("START SCREEN",True,(255,0,0))
+        GAME.SCREEN.blit(text, (480,370))
+        x = str(mouse_pos.x)
+        y = str(mouse_pos.y)
+        mouse_text = FONT.render("x: " + x + " y: " + y,True,(0,255,0))
+        GAME.SCREEN.blit(mouse_text, (10,10))
+
+        
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
