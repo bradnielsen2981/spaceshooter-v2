@@ -44,16 +44,12 @@ class Enemy(pygame.sprite.Sprite):
         if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
             self.direction = -self.direction
             self.position = self.position + pygame.Vector2(0,80)
-            self.speed += 2
+            self.speed += 1
 
         #tests for collision and removes any collided sprites
         if pygame.sprite.groupcollide(GAME.BULLET_GROUP, GAME.ENEMY_GROUP, True, True):
             print("Enemy hit")
             GAME.SCORE += 1
-
-        if self.position.y > 700:
-            self.kill()
-            GAME.EXIT = True
         return
 
 

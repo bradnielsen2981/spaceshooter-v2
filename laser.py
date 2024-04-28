@@ -9,8 +9,7 @@ class Laser(pygame.sprite.Sprite):
 
         self.image = pygame.Surface((3, 15), pygame.SRCALPHA)
         self.image.fill((0, 255, 0))  # Green color
-        #self.original_image = pygame.Surface((3, 15), pygame.SRCALPHA)
-        #self.original_image.fill((0, 255, 0))  # Green color
+        #self.orgininal_image = self.image.copy()
 
         #angle = direction.angle_to((1, 0)) + 90
         #self.image = pygame.transform.rotate(self.original_image, angle)
