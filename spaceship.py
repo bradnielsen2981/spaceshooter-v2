@@ -36,15 +36,25 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
     # Updates the sprite every frame
     def update(self, pressed, mouse_pos, mouse_buttons):
 
+        self.direction = pygame.Vector2(0,0)
+
         if pressed[pygame.K_a] == 1:
-            self.direction = pygame.Vector2(-1,0)
+            self.direction = self.direction + pygame.Vector2(-1,0)
+            self.position = self.position + self.speed*self.direction
+            self.rect.center = self.position.xy #need to move the rectangle to draw
+        elif pressed[pygame.K_d] == 1:
+            self.direction = self.direction + pygame.Vector2(1,0)
             self.position = self.position + self.speed*self.direction
             self.rect.center = self.position.xy #need to move the rectangle to draw
 
-        elif pressed[pygame.K_d] == 1:
-            self.direction = pygame.Vector2(1,0)
+        if pressed[pygame.K_w] == 1:
+            self.direction = self.direction + pygame.Vector2(0,-1)
             self.position = self.position + self.speed*self.direction
             self.rect.center = self.position.xy #need to move the rectangle to draw
+        elif pressed[pygame.K_s] == 1:
+            self.direction = self.direction + pygame.Vector2(0,1)
+            self.position = self.position + self.speed*self.direction
+            self.rect.center = self.position.xy #need to move the rectangle to draw            
 
         if pressed[pygame.K_SPACE] == 1:
             if (time.time() - self.last_shoot_time) > 1:

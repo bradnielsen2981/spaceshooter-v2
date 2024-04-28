@@ -1,6 +1,6 @@
 ''' Main Game Code '''
 import pygame
-from pygame.locals import *
+import pygame.locals as CONSTANTS
 import os, sys, random, time, math
 import game_globals as GAME
 from spaceship import Spaceship
@@ -33,11 +33,11 @@ while not GAME.EXIT:
     # Control the rate at which game run --> framerate set to 60fps #
     CLOCK.tick(60)
 
-    # GAME LOGIC ------------------------------------
+    # GAME LOGIC -----------------------------------
 
     # Process events
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
         elif event.type == create_enemy_event:
             enemy = Enemy(40,40)
@@ -67,6 +67,7 @@ while not GAME.EXIT:
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
                 pygame.time.set_timer(create_enemy_event, 1000)
+                GAME.SCORE = 0
 
     elif GAME.STATE == "Running":
         # Update Sprites
