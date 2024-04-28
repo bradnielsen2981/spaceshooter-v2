@@ -61,41 +61,5 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
 
         return
     
-    # Called by sprites update function - not necessary unless sprite has keyboard input 
-    #def apply_impulse(self, pressed, mouse_pos):   
-
-        #direction = pygame.Vector2(mouse_pos - self.position).normalize() 
-        #if pressed[pygame.K_w] == 1:
-        #    self.direction = (self.direction + direction)/2 #add the direction to the current direction
-        #    if self.speed < self.speedlimit: #limit speed
-        #        self.speed += 0.2
-        #elif pressed[pygame.K_s] == 1:
-        #    self.direction = (self.direction + direction)/2
-        #    if self.speed > -self.speedlimit: #limit speed
-        #        self.speed -= 0.2
-        #if pressed[pygame.K_a] == 1:
-        #    self.direction = (self.direction + direction.rotate(-90))/2
-        #    if self.speed < self.speedlimit: #limit speed
-        #        self.speed += 0.2
-        #elif pressed[pygame.K_d] == 1:
-        #    self.direction = (self.direction + direction.rotate(90))/2
-        #    if self.speed < self.speedlimit: #limit speed
-        #        self.speed += 0.2
-
-        #return
-
-    # Rotate towards the direction  
-    #def process_mouse_input(self, mouse_pos, mouse_buttons):
-        #mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
-        #direction = pygame.Vector2(mouse_pos - self.position).normalize() 
-        #self.angle = direction.angle_to((1, 0))
-        #self.image = pygame.transform.rotate(self.originalimage, int(self.angle) - 90)
-        #self.rect = self.image.get_rect(center=self.rect.center) #reset center
-
-        #if mouse_buttons[0] == 1: #left mouse button
-        #    if (time.time() - self.last_shoot_time) > 0.2:
-        #        l = Laser(self.position + (direction*40), direction, 10)
-        #        self.last_shoot_time = time.time()
-        #return
 
 
