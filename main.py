@@ -9,6 +9,8 @@ import game_globals as GAME
 pygame.init()
 pygame.mixer.init()
 pygame.font.init()
+
+# window
 pygame.display.set_mode((1024, 768))
 pygame.display.set_caption('Asteroids') # Setting bar title of game window #
 
@@ -30,6 +32,7 @@ while not GAME.EXIT:
         if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
 
+    #get inputs
     pressed = pygame.key.get_pressed() #returns []
     mouse_pos = pygame.Vector2(pygame.mouse.get_pos()) # returns (x,y)
     mouse_buttons = pygame.mouse.get_pressed() # return (0, 0, 0) if left button click
@@ -37,13 +40,14 @@ while not GAME.EXIT:
     GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
 
     if GAME.STATE == "Start Game":
-        text = FONT.render("START SCREEN",True,(255,0,0))
-        GAME.SCREEN.blit(text, (480,370))
-        x = str(mouse_pos.x)
-        y = str(mouse_pos.y)
-        mouse_text = FONT.render("x: " + x + " y: " + y,True,(0,255,0))
-        GAME.SCREEN.blit(mouse_text, (10,10))
+        
+        text = FONT.render("START SCREEN", True, (255,0,0) )
+        GAME.SCREEN.blit(text, (440,370))
 
+        if pressed[pygame.K_SPACE] == 1:
+            GAME.STATE = "Running"
+
+    elif GAME.STATE == "Running":
         
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
