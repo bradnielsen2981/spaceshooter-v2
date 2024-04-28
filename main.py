@@ -4,7 +4,6 @@ from pygame.locals import *
 import os, sys, random, time, math
 import game_globals as GAME
 from spaceship import Spaceship
-#from enemy import Enemy
 
 '''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
@@ -23,9 +22,6 @@ GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displa
 GAME.EXIT = False
 GAME.STATE = "Start Game"
 GAME.BULLET_GROUP = pygame.sprite.Group()
-#GAME.ENEMY_GROUP = pygame.sprite.Group()
-
-#create_enemy_event = pygame.USEREVENT + 1 #create a number of the event
 
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
@@ -39,9 +35,6 @@ while not GAME.EXIT:
     for event in pygame.event.get():
         if event.type == QUIT:
             GAME.EXIT = True
-        #elif event.type == create_enemy_event:
-        #    enemy = Enemy(10,10)
-        #    pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
 
     # Collect user input
     pressed = pygame.key.get_pressed() #returns []
@@ -49,7 +42,6 @@ while not GAME.EXIT:
     mouse_buttons = pygame.mouse.get_pressed() # return (1, 0, 0) if left button click
 
     GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
-    #GAME.SCREEN.fill((0, 0, 0))
 
     if GAME.STATE == "Start Game":
         coord = FONT.render("x: " + str(mouse_pos.x) + " y: " + str(mouse_pos.y),True,(200,200,200))
@@ -66,26 +58,23 @@ while not GAME.EXIT:
                 GAME.PLAYER = Spaceship(500,700)
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
-    #            pygame.time.set_timer(create_enemy_event, 1000)
 
     elif GAME.STATE == "Running":
         # Update Sprites
         if GAME.PLAYER:
             GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
         GAME.BULLET_GROUP.update()
-    #    GAME.ENEMY_GROUP.update()
+
 
         # GAME DRAWING ---------------------------------
         GAME.BULLET_GROUP.draw(GAME.SCREEN)
-    #    GAME.ENEMY_GROUP.draw(GAME.SCREEN)
+
         if GAME.PLAYER:
             GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
         timer = int(time.time() - GAME.STARTTIME)
         timer_text = FONT.render("Time: " + str(timer),True,(200,200,200))
         GAME.SCREEN.blit(timer_text,(10,10))
         
-    #    score_text = FONT.render("Score: " + str(GAME.SCORE),True,(200,200,200))
-    #    GAME.SCREEN.blit(score_text,(10,10))
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
