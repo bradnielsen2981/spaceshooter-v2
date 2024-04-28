@@ -50,6 +50,11 @@ class Enemy(pygame.sprite.Sprite):
         if pygame.sprite.groupcollide(GAME.BULLET_GROUP, GAME.ENEMY_GROUP, True, True):
             print("Enemy hit")
             GAME.SCORE += 1
+
+        if self.position.y > 700:
+            GAME.STATE = "Game Over"
+            GAME.MUSIC.stop()
+            GAME.EXIT = True
         return
 
 

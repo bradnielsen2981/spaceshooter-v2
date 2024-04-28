@@ -48,12 +48,12 @@ class Spaceship(pygame.sprite.Sprite): ##Q what does sprite class mean?
             self.rect.center = self.position.xy #need to move the rectangle to draw
 
         if pressed[pygame.K_w] == 1:
-            self.direction = self.direction + pygame.Vector2(0,-1)
+            self.direction = (self.direction + pygame.Vector2(0,-1)).normalize()
             self.position = self.position + self.speed*self.direction
             self.rect.center = self.position.xy #need to move the rectangle to draw
 
         elif pressed[pygame.K_s] == 1:
-            self.direction = self.direction + pygame.Vector2(0,1)
+            self.direction = (self.direction + pygame.Vector2(0,1)).normalize()
             self.position = self.position + self.speed*self.direction
             self.rect.center = self.position.xy #need to move the rectangle to draw
 
