@@ -7,11 +7,9 @@ class Laser(pygame.sprite.Sprite):
 
         super().__init__()  #need to call the super constructor to work with Groups
 
-        self.original_image = pygame.Surface((3, 15), pygame.SRCALPHA)
-        self.original_image.fill((0, 255, 0))  # Green color
+        self.image = pygame.Surface((3, 15), pygame.SRCALPHA)
+        self.image.fill((0, 255, 0))  # Green color
 
-        angle = direction.angle_to((1, 0)) + 90
-        self.image = pygame.transform.rotate(self.original_image, angle)
         self.rect = self.image.get_rect(center=position)
         self.position = position
 
