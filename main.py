@@ -16,7 +16,8 @@ pygame.display.set_caption('Asteroids') # Setting bar title of game window #
 
 # Global game objects and variables
 CLOCK = pygame.time.Clock() # Creating a 'clock' variable that tracks time #
-FONT = pygame.font.SysFont('Comic Sans MS', 30)
+FONT = pygame.font.SysFont('Impact', 60)
+FONT2 = pygame.font.SysFont('Ariel', 30)
 BACKGROUND_IMAGE = pygame.image.load("images/background.jpg")
 
 GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displayed #
@@ -40,15 +41,26 @@ while not GAME.EXIT:
     GAME.SCREEN.blit(BACKGROUND_IMAGE, (0,0))
 
     if GAME.STATE == "Start Game":
-        
-        text = FONT.render("START SCREEN", True, (255,0,0) )
-        GAME.SCREEN.blit(text, (440,370))
+        text = FONT.render("Press SPACE to Start", True, (255,0,0) )
+        GAME.SCREEN.blit(text, (280,320))
+
+        x = mouse_pos.x
+        y = mouse_pos.y
+        position_text = "X: " + str(x) + " Y: " + str(y)
+        text = FONT2.render(position_text, True, (255,255,255))
+        GAME.SCREEN.blit(text, (10,10))
 
         if pressed[pygame.K_SPACE] == 1:
             GAME.STATE = "Running"
+            GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
+            GAME.MUSIC.play(-1) 
 
     elif GAME.STATE == "Running":
-        
+        text = FONT2.render("Score: 0", True, (255,0,0) )
+        GAME.SCREEN.blit(text, (10,10))
+
+        if pressed[pygame.K_q] == 1:
+            GAME.EXIT = True
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
