@@ -55,8 +55,8 @@ while not GAME.EXIT:
                 GAME.STARTTIME = time.time()
                 GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
                 GAME.MUSIC.play(-1)
-                #GAME.PLAYER = Spaceship(500,300)
                 GAME.STATE = "Running"
+                #GAME.PLAYER = Spaceship(500,300)
 
     elif GAME.STATE == "Running":
             

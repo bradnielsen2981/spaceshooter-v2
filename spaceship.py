@@ -13,7 +13,7 @@ class Spaceship(pygame.sprite.Sprite):
     
     # draw the sprite
     def draw(self, screen):
-        screen.blit(self.image, self.rect)
+        #screen.blit(self.image, self.rect)
         return
     
     # Updates the sprite every frame
