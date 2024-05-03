@@ -3,6 +3,8 @@ import pygame
 import pygame.locals as CONSTANTS
 import os, sys, random, time, math
 import game_globals as GAME
+from spaceship import Spaceship
+from enemy import Enemy
 
 '''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
@@ -23,6 +25,11 @@ BACKGROUND_IMAGE = pygame.image.load("images/background.jpg")
 GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displayed #
 GAME.EXIT = False
 GAME.STATE = "Start Game"
+GAME.PLAYER = None
+GAME.ENEMY = None
+GAME.ENEMY_GROUP = pygame.sprite.Group() #list = [Enemy1,Enemy2 ]
+
+
 
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
@@ -57,14 +64,27 @@ while not GAME.EXIT:
             GAME.STATE = "Running"
             GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
             GAME.MUSIC.play(-1) 
+            GAME.PLAYER = Spaceship(512, 384)
+            GAME.ENEMY = Enemy(100, 100)
+            create_enemy_timer
 
     #Running Game Screen
     elif GAME.STATE == "Running":
         text = FONT2.render("Score: 0", True, (255,0,0) )
         GAME.SCREEN.blit(text, (10,10))
 
-        if pressed[pygame.K_q] == 1:    #quit the game if q is pressed
-            GAME.EXIT = True
+        #update my sprites
+        GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons)
+        GAME.ENEMY.update()
+
+        #draw my sprites
+        GAME.PLAYER.draw(GAME.SCREEN) #call every frame
+        GAME.ENEMY.draw(GAME.SCREEN)
+
+
+
+        #draw my sprites
+
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
