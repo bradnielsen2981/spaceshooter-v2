@@ -26,10 +26,8 @@ GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displa
 GAME.EXIT = False
 GAME.STATE = "Start Game"
 GAME.PLAYER = None
-GAME.ENEMY = None
 GAME.ENEMY_GROUP = pygame.sprite.Group() #list = [Enemy1,Enemy2 ]
-
-
+create_enemy_event = pygame.USEREVENT + 1 #event number
 
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
@@ -39,6 +37,10 @@ while not GAME.EXIT:
     for event in pygame.event.get():
         if event.type == CONSTANTS.QUIT:
             GAME.EXIT = True
+        elif event.type == create_enemy_event:
+            e = Enemy(100,100)
+            GAME.ENEMY_GROUP.add(e)
+            pygame.time.set_timer(create_enemy_event, 2000)
 
     #get inputs
     pressed = pygame.key.get_pressed() #returns []
@@ -65,8 +67,7 @@ while not GAME.EXIT:
             GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
             GAME.MUSIC.play(-1) 
             GAME.PLAYER = Spaceship(512, 384)
-            GAME.ENEMY = Enemy(100, 100)
-            create_enemy_timer
+            pygame.time.set_timer(create_enemy_event, 2000)
 
     #Running Game Screen
     elif GAME.STATE == "Running":
@@ -75,16 +76,11 @@ while not GAME.EXIT:
 
         #update my sprites
         GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons)
-        GAME.ENEMY.update()
+        GAME.ENEMY_GROUP.update(pressed, mouse_pos, mouse_buttons)
 
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
-        GAME.ENEMY.draw(GAME.SCREEN)
-
-
-
-        #draw my sprites
-
+        GAME.ENEMY_GROUP.draw(GAME.SCREEN)
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     

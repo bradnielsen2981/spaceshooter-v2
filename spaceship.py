@@ -17,10 +17,11 @@ class Spaceship(pygame.sprite.Sprite):
     def update(self, pressed, mouse_pos, mouse_buttons):
 
         if pressed[pygame.K_a] == 1:
-            self.rect.x = self.rect.x - 1
-        elif pressed[pygame.K_d] == 1:
-            self.rect.x = self.rect.x + 1
-        elif pressed[pygame.K_s] == 1:
-            self.rect.y = self.rect.y + 1
-        elif pressed[pygame.K_w] == 1:
-            self.rect.y = self.rect.y - 1
+            self.rect.x = self.rect.x - 4
+        if pressed[pygame.K_d] == 1:
+            self.rect.x = self.rect.x + 4
+        if pressed[pygame.K_w] == 1:
+            self.rect.y = self.rect.y - 4
+        if pressed[pygame.K_s] == 1:
+            self.rect.y = self.rect.y + 4
+        
