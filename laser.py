@@ -24,6 +24,7 @@ class Laser(pygame.sprite.Sprite):
         return
 
     def update(self):
+        self.rect.y = self.rect.y - 10
         return
     
 
