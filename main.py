@@ -27,6 +27,7 @@ GAME.EXIT = False
 GAME.STATE = "Start Game"
 GAME.PLAYER = None
 GAME.ENEMY_GROUP = pygame.sprite.Group() #list = [Enemy1,Enemy2 ]
+GAME.BULLET_GROUP = pygame.sprite.Group() #list = [Bullet1, Bullet2]
 create_enemy_event = pygame.USEREVENT + 1 #event number
 
 '''-------------------------- Game Loop --------------------------'''
@@ -76,11 +77,13 @@ while not GAME.EXIT:
 
         #update my sprites
         GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons)
-        GAME.ENEMY_GROUP.update(pressed, mouse_pos, mouse_buttons)
+        GAME.ENEMY_GROUP.update()
+        GAME.BULLET_GROUP.update()
 
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
         GAME.ENEMY_GROUP.draw(GAME.SCREEN)
+        GAME.BULLET_GROUP.draw(GAME.SCREEN)
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     

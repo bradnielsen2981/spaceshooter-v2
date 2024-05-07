@@ -14,23 +14,16 @@ class Laser(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
-        # Set velocity based on direction and speed
-        self.direction = direction
-        self.speed = speed
-
         # Play sound
         self.sound = pygame.mixer.Sound("sounds/laser.mp3")
         self.sound.play(0)
-
-        GAME.BULLET_GROUP.add(self) #makes it draw and update
+        return
+    
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
         return
 
     def update(self):
-        self.position = self.position + self.speed*self.direction
-        self.rect.center = self.position.xy #need to move the rectangle to draw
-        
-        if not self.rect.colliderect(GAME.SCREEN.get_rect()):
-            self.kill()
         return
     
 

@@ -17,7 +17,7 @@ class Enemy(pygame.sprite.Sprite):
         screen.blit(self.image, self.rect)
         return
     
-    def update(self, pressed, mouse_pos, mouse_buttons):
+    def update(self):
         self.rect.x = self.rect.x + 4
         #self.rect.x = self.rect.x + (self.direction * self.speed)
         #if self.rect.x > 1024:
