@@ -78,12 +78,10 @@ while not GAME.EXIT:
         #update my sprites
         GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons)
         GAME.ENEMY_GROUP.update()
-        GAME.BULLET_GROUP.update()
 
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
         GAME.ENEMY_GROUP.draw(GAME.SCREEN)
-        GAME.BULLET_GROUP.draw(GAME.SCREEN)
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
