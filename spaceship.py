@@ -1,7 +1,6 @@
 #Create a spaceship object that will be used to shoot the aliens
 import pygame
 import game_globals as GAME
-
 import time
 
 class Spaceship(pygame.sprite.Sprite):
