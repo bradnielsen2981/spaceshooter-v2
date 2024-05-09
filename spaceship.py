@@ -2,6 +2,7 @@
 import pygame
 import game_globals as GAME
 import time
+from laser import Laser
 
 class Spaceship(pygame.sprite.Sprite):
  
@@ -26,6 +27,10 @@ class Spaceship(pygame.sprite.Sprite):
             self.rect.y = self.rect.y - 4
         if pressed[pygame.K_s] == 1:
             self.rect.y = self.rect.y + 4
+
+        if pressed[pygame.K_SPACE] == 1:
+            laser = Laser(self.rect.centerx, self.rect.centery - 30)
+            
 
 
 
