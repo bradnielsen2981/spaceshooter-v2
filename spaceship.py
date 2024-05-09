@@ -28,12 +28,6 @@ class Spaceship(pygame.sprite.Sprite):
         if pressed[pygame.K_s] == 1:
             self.rect.y = self.rect.y + 4
 
-        if pressed[pygame.K_SPACE] == 1:
 
-            if time.time() - self.last_shoot_time > 1:
-                l = Laser(self.rect.centerx, self.rect.centery)
-                GAME.BULLET_GROUP.add(l)
-
-                self.last_shoot_time = time.time()
 
         
