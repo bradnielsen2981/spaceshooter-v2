@@ -8,6 +8,8 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__() # call the init function in pygame.sprite
         self.image = pygame.image.load("images/alien.png")
+        self.image = pygame.transform.scale(self.image, (75,75))
+
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
 
