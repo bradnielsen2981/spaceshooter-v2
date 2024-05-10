@@ -11,6 +11,7 @@ class Spaceship(pygame.sprite.Sprite):
         self.image = pygame.image.load("images/spaceship.png")
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
+
         self.last_shoot_time = 0
 
     def draw(self, screen):
@@ -29,8 +30,11 @@ class Spaceship(pygame.sprite.Sprite):
             self.rect.y = self.rect.y + 4
 
         if pressed[pygame.K_SPACE] == 1:
-            laser = Laser(self.rect.centerx, self.rect.centery - 30)
-            
+
+            if time.time() - self.last_shoot_time > 0.5:
+                laser = Laser(self.rect.centerx, self.rect.centery - 30)
+                self.last_shoot_time = time.time()
+
 
 
 

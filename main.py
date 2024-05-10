@@ -80,6 +80,8 @@ while not GAME.EXIT:
         GAME.ENEMY_GROUP.update()
         GAME.BULLET_GROUP.update()
 
+
+
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
         GAME.ENEMY_GROUP.draw(GAME.SCREEN)

@@ -12,7 +12,8 @@ class Laser(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
 
-        
+        self.sound = pygame.mixer.Sound("sounds/laser.mp3")
+        self.sound.play(0)
 
         GAME.BULLET_GROUP.add(self)
   
@@ -22,6 +23,9 @@ class Laser(pygame.sprite.Sprite):
     
     def update(self):
         self.rect.y = self.rect.y - 10
+
+        if self.rect.y < 0:
+            self.kill()
  
 
         
