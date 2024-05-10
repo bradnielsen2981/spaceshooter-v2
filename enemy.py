@@ -21,9 +21,10 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.rect.x = self.rect.x + (self.direction * self.speed)
         
-        if not self.rect.colliderect(GAME.SCREEN):
+        screen_rect = pygame.Rect( (0, 0) , GAME.SCREEN.get_size())
+        if GAME.is_sprite_outside_rectangle(self, screen_rect, align=True):
             self.direction = self.direction * -1
-            self.rect.y = self.rect.y + 50
+            self.rect.y = self.rect.y + 60
+            self.speed = self.speed + 2
 
-        
-        
+        return
