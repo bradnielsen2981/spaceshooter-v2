@@ -52,6 +52,7 @@ while not GAME.EXIT:
 
     #Start Game Screen
     if GAME.STATE == "Start Game":
+        GAME.SCORE = 0
         text = FONT.render("Press SPACE to Start", True, (255,0,0) )
         GAME.SCREEN.blit(text, (280,320))
 
@@ -72,7 +73,7 @@ while not GAME.EXIT:
 
     #Running Game Screen
     elif GAME.STATE == "Running":
-        text = FONT2.render("Score: 0", True, (255,0,0) )
+        text = FONT2.render("Score: " + str(GAME.SCORE), True, (255,0,0) )
         GAME.SCREEN.blit(text, (10,10))
 
         #update my sprites
@@ -80,12 +81,24 @@ while not GAME.EXIT:
         GAME.ENEMY_GROUP.update()
         GAME.BULLET_GROUP.update()
 
+        #check for collisions
+        if pygame.sprite.groupcollide(GAME.ENEMY_GROUP, GAME.BULLET_GROUP, True, True):
+            GAME.SCORE = GAME.SCORE + 1
 
+        if pygame.sprite.spritecollide(GAME.PLAYER, GAME.ENEMY_GROUP, True):
+            GAME.STATE = "Start Game"
+            GAME.ENEMY_GROUP.empty()
+            GAME.BULLET_GROUP.empty()
+            GAME.PLAYER.kill()
+            GAME.MUSIC.stop()
 
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
         GAME.ENEMY_GROUP.draw(GAME.SCREEN)
         GAME.BULLET_GROUP.draw(GAME.SCREEN)
+
+    if GAME.STATE == "Game Over":
+        pass
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
