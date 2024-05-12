@@ -86,19 +86,24 @@ while not GAME.EXIT:
             GAME.SCORE = GAME.SCORE + 1
 
         if pygame.sprite.spritecollide(GAME.PLAYER, GAME.ENEMY_GROUP, True):
-            GAME.STATE = "Start Game"
-            GAME.ENEMY_GROUP.empty()
-            GAME.BULLET_GROUP.empty()
-            GAME.PLAYER.kill()
-            GAME.MUSIC.stop()
+            GAME.STATE = "Game Over"
 
         #draw my sprites
         GAME.PLAYER.draw(GAME.SCREEN) #call every frame
         GAME.ENEMY_GROUP.draw(GAME.SCREEN)
         GAME.BULLET_GROUP.draw(GAME.SCREEN)
 
-    if GAME.STATE == "Game Over":
-        pass
+    elif GAME.STATE == "Game Over":
+        GAME.ENEMY_GROUP.empty()
+        GAME.BULLET_GROUP.empty()
+        GAME.PLAYER.kill()
+        GAME.MUSIC.stop()
+
+        text = FONT.render("Game Over", True, (255,0,0) )
+        GAME.SCREEN.blit(text, (280,320))
+
+        if pressed[pygame.K_SPACE] == 1:
+            GAME.STATE = "Start Game"
 
     pygame.display.flip() #all drawing that was done off screen is now flipped onto the screen
     
