@@ -3,9 +3,9 @@ import pygame
 from pygame.locals import *
 import os, sys, random, time, math
 import game_globals as GAME
-from spaceship import Spaceship
+from player import Player
 from enemy import Enemy
-from laser import Laser
+from platforms import Platform
 
 '''----------------------- Initialisation --------------------------'''
 # Initialising imported Pygame modules (basically getting things started) #
@@ -23,10 +23,11 @@ BACKGROUND_IMAGE = pygame.image.load("images/background.jpg")
 GAME.SCREEN = pygame.display.get_surface() # Where graphics/visual output displayed #
 GAME.EXIT = False
 GAME.STATE = "Start Game"
-GAME.BULLET_GROUP = pygame.sprite.Group()
-GAME.ENEMY_GROUP = pygame.sprite.Group()
+GAME.PLATFORM_GROUP = pygame.sprite.Group()
 
-create_enemy_event = pygame.USEREVENT + 1 #create a number of the event
+p = Platform((0,680),1024,68)
+GAME.PLATFORM_GROUP.add(p)
+
 
 '''-------------------------- Game Loop --------------------------'''
 while not GAME.EXIT:
@@ -35,18 +36,10 @@ while not GAME.EXIT:
     CLOCK.tick(60)
 
     # GAME LOGIC ------------------------------------
-
     # Process events
     for event in pygame.event.get():
         if event.type == QUIT:
             GAME.EXIT = True
-        elif event.type == create_enemy_event:
-            #choose a random corner
-            position = random.choice([(0,0),(1024,0),(0,768),(1024,768)])
-            enemy = Enemy(position[0],position[1])
-            #enemy = Enemy(10,10)
-            pygame.time.set_timer(create_enemy_event, 1000) #create a looping time
-
 
     # Collect user input
     pressed = pygame.key.get_pressed() #returns []
@@ -64,25 +57,21 @@ while not GAME.EXIT:
         button_text = FONT.render("Play",True,(200,200,200))
         GAME.SCREEN.blit(button_text,(520,360))
         
-        if mouse_buttons[0] == 1:
-            if button_rect.collidepoint(mouse_pos):
-                GAME.STATE = "Running"
-                GAME.STARTTIME = time.time()
-                GAME.PLAYER = Spaceship(500,300)
-                GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
-                GAME.MUSIC.play(-1)
-                pygame.time.set_timer(create_enemy_event, 1000)
+        if pressed[pygame.K_SPACE]:
+            GAME.STATE = "Running"
+            GAME.STARTTIME = time.time()
+            GAME.PLAYER = Player(500,500)
+            #GAME.MUSIC = pygame.mixer.Sound("sounds/sunsetreverie.mp3")
+            #GAME.MUSIC.play(-1)
 
     elif GAME.STATE == "Running":
         # Update Sprites
         if GAME.PLAYER:
             GAME.PLAYER.update(pressed, mouse_pos, mouse_buttons) #update all sprites by calling their update function
-        GAME.BULLET_GROUP.update()
-        GAME.ENEMY_GROUP.update()
+        GAME.PLATFORM_GROUP.update()
 
         # GAME DRAWING ---------------------------------
-        GAME.BULLET_GROUP.draw(GAME.SCREEN)
-        GAME.ENEMY_GROUP.draw(GAME.SCREEN)
+        GAME.PLATFORM_GROUP.draw(GAME.SCREEN)
         if GAME.PLAYER:
             GAME.PLAYER.draw(GAME.SCREEN) # draw sprite
         
@@ -104,10 +93,8 @@ while not GAME.EXIT:
     elif GAME.STATE == "Game Over":
         LABEL = FONT.render("GAME OVER",True,(200,200,200))
         GAME.SCREEN.blit(LABEL, (400,360))
-        pygame.time.set_timer(create_enemy_event, 0)
         GAME.PLAYER = None #Now kill the player
-        GAME.BULLET_GROUP.empty()
-        GAME.ENEMY_GROUP.empty()
+        GAME.PLATFORM_GROUP.empty()
 
         if time.time() - GAME.ENDTIME > 3:
             GAME.STATE = "Start Game"
